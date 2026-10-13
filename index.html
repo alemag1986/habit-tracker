@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Activity tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to the year</a>
+    <div class="app">
+      <aside>
+        <div class="aside-head">
+          <h1 class="brand">Activities</h1>
+          <p class="aside-note">Saved in this browser.</p>
+        </div>
+        <form id="add-form" class="add-form">
+          <label class="sr-only" for="new-name">New activity</label>
+          <input
+            id="new-name"
+            name="name"
+            type="text"
+            maxlength="48"
+            placeholder="New activity"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Add</button>
+        </form>
+        <ul id="activity-list" class="activity-list" aria-label="Your activities"></ul>
+        <div class="backup">
+          <button type="button" id="export">Download backup</button>
+          <label class="restore">
+            Restore backup
+            <input id="import" type="file" accept="application/json,.json" />
+          </label>
+          <p id="backup-msg" class="backup-msg" role="status"></p>
+        </div>
+      </aside>
+      <main id="main">
+        <section id="empty" class="empty" hidden>
+          <p class="lead">Track what you do</p>
+          <p class="empty-copy">
+            Add an activity, then mark each day you did it. You can track as many
+            as you want. A day stays marked until you click it again.
+          </p>
+        </section>
+        <section id="tracker" hidden>
+          <div class="top">
+            <div class="year-nav">
+              <button type="button" id="prev-year">Previous</button>
+              <p id="year-label" class="year">2026</p>
+              <button type="button" id="next-year">Next</button>
+            </div>
+            <button type="button" id="mark-today">Mark today</button>
+          </div>
+          <div class="identity">
+            <label class="sr-only" for="activity-name">Activity name</label>
+            <input id="activity-name" class="title" type="text" maxlength="48" />
+            <div id="colors" class="colors" role="radiogroup" aria-label="Color"></div>
+            <div class="stats" aria-live="polite">
+              <p id="stat-year"></p>
+              <p id="stat-streak"></p>
+              <p id="stat-longest"></p>
+            </div>
+            <p id="status" class="status" role="status"></p>
+            <div id="remove-row" class="remove-row">
+              <button type="button" id="remove" class="text-btn">Remove activity</button>
+              <div id="remove-confirm" class="remove-confirm" hidden>
+                <p id="remove-copy"></p>
+                <button type="button" id="confirm-remove">Remove</button>
+                <button type="button" id="cancel-remove" class="text-btn">Keep</button>
+              </div>
+            </div>
+          </div>
+          <div id="months" class="months"></div>
+        </section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
